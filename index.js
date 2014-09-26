@@ -25,6 +25,8 @@ function distance( pt1, pt2 ){
  *      smaller number is given, then the endpoints will still be returned).
  */
 function interpolateLineRange( ctrlPoints, number ){
+  // Calculate path distance from each control point (vertex) to the beginning
+  // of the line.
   var totalDist = 0;
   var ctrlPtDists = [ 0 ];
   for( var pt = 1; pt < ctrlPoints.length; pt++ ){
@@ -32,6 +34,7 @@ function interpolateLineRange( ctrlPoints, number ){
     ctrlPtDists.push( totalDist );
   }
 
+  // Variables used to control interpolation.
   var step = totalDist / (number - 1);
   var interpPoints = [ ctrlPoints[ 0 ] ];
   var prevCtrlPtInd = 0;
@@ -40,12 +43,14 @@ function interpolateLineRange( ctrlPoints, number ){
   var nextDist = step;
 
   for( pt = 0; pt < number - 2; pt++ ){
+    // Find the segment in which the next interpolated point lies.
     while( nextDist > ctrlPtDists[ prevCtrlPtInd + 1 ] ){
       prevCtrlPtInd++;
       currDist = ctrlPtDists[ prevCtrlPtInd ];
       currPoint = ctrlPoints[ prevCtrlPtInd ];
     }
 
+    // Interpolate the coordinates of the next point along the current segment.
     var remainingDist = nextDist - currDist;
     var ctrlPtsDeltaX = ctrlPoints[ prevCtrlPtInd + 1 ].x -
       ctrlPoints[ prevCtrlPtInd ].x;
