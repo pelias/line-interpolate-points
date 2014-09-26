@@ -15,7 +15,7 @@ module.exports.tests.interpolation = function ( test, common ){
       { x: 100, y: 150 },
       { x: 120, y: 100 },
       { x: 300, y: 400 }
-    ], 10);
+    ], 11);
 
     var expected = [
       { x: 0, y: 0 },
