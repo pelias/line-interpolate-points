@@ -4,7 +4,7 @@ more* line segments. It's particularly useful for GIS applications, and is analo
 `ST_LineInterpolatePoint()` and Python Shapely's `shapely.geometry.LineString.interpolate()`. Here's an example of a
 number of points interpolated over a multi-segment line:
 
-![A range of points interpolated along a multi-segment line.](./line_points_interpolation.png)
+![A range of points interpolated along a multi-segment line.](https://raw.githubusercontent.com/pelias/line-interpolate-points/master/line_points_interpolation.png)
 
 ## the api
 The module exports a single function, `interpolateLineRange( ctrlPoints, number )`; `ctrlPoints` is an array of 2D
