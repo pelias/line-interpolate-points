@@ -1,3 +1,6 @@
+[![NPM](https://nodei.co/npm/line-interpolate-points.png?downloads=true&stars=true)]
+(https://nodei.co/npm/line-interpolate-points/)
+
 # line interpolate points
 A Node module that interpolates the coordinates of any number of equidistant points along a line composed of one *or
 more* line segments. It's particularly useful for GIS applications, and is analogous to the PostGIS
