@@ -1,6 +1,6 @@
 {
   "name": "line-interpolate-points",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Exposes a function to interpolate any number of points along a multi-segment line (LineString).",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pelias/addresses"
+    "url": "https://github.com/pelias/line-interpolate-points"
   },
   "keywords": [
     "mapzen",
@@ -19,9 +19,9 @@
   "author": "mapzen",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pelias/addresses/issues"
+    "url": "https://github.com/pelias/line-interpolate-points/issues"
   },
-  "homepage": "https://github.com/pelias/addresses",
+  "homepage": "https://github.com/pelias/line-interpolate-points",
   "devDependencies": {
     "tape": "^2.13.4",
     "tap-spec": "^0.2.0"

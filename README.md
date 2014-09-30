@@ -1,5 +1,4 @@
-[![NPM](https://nodei.co/npm/line-interpolate-points.png?downloads=true&stars=true)]
-(https://nodei.co/npm/line-interpolate-points/)
+[![NPM](https://nodei.co/npm/line-interpolate-points.png?downloads=true&stars=true)](https://nodei.co/npm/line-interpolate-points/)
 
 # line interpolate points
 A Node module that interpolates the coordinates of any number of equidistant points along a line composed of one *or
@@ -15,7 +14,7 @@ point objects, like `[ { x: 5, y: 10 }, { x: 7, y: 10 }, { x: 14, y: 13 } ]`, wh
 interpolate (the endpoints included).
 
 ```javascript
-> var interpolateLineRange = require( 'line-points-interpolator' )
+> var interpolateLineRange = require( 'line-interpolate-points' )
 > interpolateLineRange( [ { x: 3, y: 10 }, { x: 4, y: 10 } ], 2 )
 [ { x: 3, y: 10 },
   { x: 4, y: 10 } ]
