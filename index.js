@@ -2,6 +2,9 @@
  * A module that exports a single function (`interpolateLineRange()`), which
  * interpolates the coordinates of any number of equidistant points along the
  * length of a potentially multi-segment line.
+ *
+ * Note: this module's function documentation frequently refers to a `Point`
+ * object, which is simply an array of two numbers (the x- and y- coordinates).
  */
 
 'use strict';
@@ -12,8 +15,8 @@
  * @return number The Euclidean distance between `pt1` and `pt2`.
  */
 function distance( pt1, pt2 ){
-  var deltaX = pt1.x - pt2.x;
-  var deltaY = pt1.y - pt2.y;
+  var deltaX = pt1[0] - pt2[0];
+  var deltaY = pt1[1] - pt2[1];
   return Math.sqrt( deltaX * deltaX + deltaY * deltaY );
 }
 
@@ -52,17 +55,17 @@ function interpolateLineRange( ctrlPoints, number ){
 
     // Interpolate the coordinates of the next point along the current segment.
     var remainingDist = nextDist - currDist;
-    var ctrlPtsDeltaX = ctrlPoints[ prevCtrlPtInd + 1 ].x -
-      ctrlPoints[ prevCtrlPtInd ].x;
-    var ctrlPtsDeltaY = ctrlPoints[ prevCtrlPtInd + 1 ].y -
-      ctrlPoints[ prevCtrlPtInd ].y;
+    var ctrlPtsDeltaX = ctrlPoints[ prevCtrlPtInd + 1 ][0] -
+      ctrlPoints[ prevCtrlPtInd ][0];
+    var ctrlPtsDeltaY = ctrlPoints[ prevCtrlPtInd + 1 ][1] -
+      ctrlPoints[ prevCtrlPtInd ][1];
     var ctrlPtsDist = ctrlPtDists[ prevCtrlPtInd + 1 ] -
       ctrlPtDists[ prevCtrlPtInd ];
 
-    currPoint = {
-      x: currPoint.x + ( ctrlPtsDeltaX / ctrlPtsDist ) * remainingDist,
-      y: currPoint.y + ( ctrlPtsDeltaY / ctrlPtsDist ) * remainingDist
-    };
+    currPoint = [
+      currPoint[0] + ( ctrlPtsDeltaX / ctrlPtsDist ) * remainingDist,
+      currPoint[1] + ( ctrlPtsDeltaY / ctrlPtsDist ) * remainingDist
+    ];
     interpPoints.push( currPoint );
 
     currDist = nextDist;
@@ -71,14 +74,6 @@ function interpolateLineRange( ctrlPoints, number ){
 
   interpPoints.push( ctrlPoints[ ctrlPoints.length - 1 ] );
   return interpPoints;
-}
-
-/**
- * A simple 2D point object.
- */
-function Point( x, y ){
-  this.x = x;
-  this.y = y;
 }
 
 module.exports = interpolateLineRange;

@@ -1,5 +1,5 @@
 /**
- * @file 
+ * @file Unit tests for the package.
  */
 
 'use strict';
@@ -11,24 +11,24 @@ module.exports.tests = {};
 module.exports.tests.interpolation = function ( test, common ){
   test( 'interpolates point coordinates correctly', function ( t ){
     var actual = interpolateLineRange([
-      { x: 0, y: 0 },
-      { x: 100, y: 150 },
-      { x: 120, y: 100 },
-      { x: 300, y: 400 }
+      [ 0, 0 ],
+      [ 100, 150 ],
+      [ 120, 100 ],
+      [ 300, 400 ]
     ], 11);
 
     var expected = [
-      { x: 0, y: 0 },
-      { x: 32.39373293672607, y: 48.590599405089094 },
-      { x: 64.78746587345213, y: 97.18119881017819 },
-      { x: 97.18119881017819, y: 145.77179821526727 },
-      { x: 119.80142422763696, y: 100.49643943090761 },
-      { x: 149.77075714219484, y: 149.61792857032475 },
-      { x: 179.81660571375585, y: 199.6943428562598 },
-      { x: 209.86245428531686, y: 249.77075714219484 },
-      { x: 239.90830285687787, y: 299.84717142812985 },
-      { x: 269.9541514284389, y: 349.92358571406487 },
-      { x: 300, y: 400 }
+      [ 0, 0 ],
+      [ 32.39373293672607, 48.590599405089094 ],
+      [ 64.78746587345213, 97.18119881017819 ],
+      [ 97.18119881017819, 145.77179821526727 ],
+      [ 119.80142422763696, 100.49643943090761 ],
+      [ 149.77075714219484, 149.61792857032475 ],
+      [ 179.81660571375585, 199.6943428562598 ],
+      [ 209.86245428531686, 249.77075714219484 ],
+      [ 239.90830285687787, 299.84717142812985 ],
+      [ 269.9541514284389, 349.92358571406487 ],
+      [ 300, 400 ]
     ];
 
     t.true(
@@ -37,11 +37,11 @@ module.exports.tests.interpolation = function ( test, common ){
     );
     for(var pt = 0; pt < actual.length; pt++){
       t.true(
-        Math.floor(actual[pt].x) == Math.floor(expected[pt].x),
+        Math.floor(actual[pt][0]) == Math.floor(expected[pt][0]),
         util.format('x-coordinate %d matches.', pt)
       );
       t.true(
-        Math.floor(actual[pt].y) == Math.floor(expected[pt].y),
+        Math.floor(actual[pt][1]) == Math.floor(expected[pt][1]),
         util.format('y-coordinate %d matches.', pt)
       );
     }
@@ -51,7 +51,7 @@ module.exports.tests.interpolation = function ( test, common ){
 
 module.exports.all = function (tape, common) {
   function test(name, testFunction) {
-    return tape('index: ' + name, testFunction);
+    return tape('inde' + name, testFunction);
   }
 
   for( var testCase in module.exports.tests ){
