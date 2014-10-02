@@ -10,12 +10,12 @@ module.exports.tests = {};
 
 module.exports.tests.interpolation = function ( test, common ){
   test( 'interpolates point coordinates correctly', function ( t ){
-    var actual = interpolateLineRange([
+    var actual = interpolateLineRange( [
       [ 0, 0 ],
       [ 100, 150 ],
       [ 120, 100 ],
       [ 300, 400 ]
-    ], 11);
+    ], 11 );
 
     var expected = [
       [ 0, 0 ],
@@ -35,28 +35,28 @@ module.exports.tests.interpolation = function ( test, common ){
       actual.length === expected.length,
       'Expected number of points interpolated.'
     );
-    for(var pt = 0; pt < actual.length; pt++){
+    for( var pt = 0; pt < actual.length; pt++ ){
       t.true(
-        Math.floor(actual[pt][0]) == Math.floor(expected[pt][0]),
-        util.format('x-coordinate %d matches.', pt)
+        Math.floor( actual[ pt ][ 0 ] ) == Math.floor( expected[ pt ][ 0 ] ),
+        util.format( 'x-coordinate %d matches.', pt )
       );
       t.true(
-        Math.floor(actual[pt][1]) == Math.floor(expected[pt][1]),
-        util.format('y-coordinate %d matches.', pt)
+        Math.floor( actual[ pt ][ 1 ] ) == Math.floor( expected[ pt ][1 ] ),
+        util.format( 'y-coordinate %d matches.', pt )
       );
     }
     t.end();
   });
 };
 
-module.exports.all = function (tape, common) {
-  function test(name, testFunction) {
-    return tape('inde' + name, testFunction);
+module.exports.all = function ( tape, common ) {
+  function test( name, testFunction ) {
+    return tape( name, testFunction );
   }
 
   for( var testCase in module.exports.tests ){
     if( module.exports.tests.hasOwnProperty( testCase ) ){
-      module.exports.tests[testCase](test, common);
+      module.exports.tests[ testCase ]( test, common );
     }
   }
 };
