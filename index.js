@@ -26,8 +26,12 @@ function distance( pt1, pt2 ){
  * @param {int} number The number of points to interpolate along the line; this
  *      includes the endpoints, and has an effective minimum value of 2 (if a
  *      smaller number is given, then the endpoints will still be returned).
+ * @param {number} [offsetDist] An optional perpendicular distance to offset
+ *      each point by from the line-segment it would otherwise lie on.
  */
-function interpolateLineRange( ctrlPoints, number ){
+function interpolateLineRange( ctrlPoints, number, offsetDist ){
+  offsetDist = offsetDist || 0;
+
   // Calculate path distance from each control point (vertex) to the beginning
   // of the line.
   var totalDist = 0;
@@ -61,12 +65,18 @@ function interpolateLineRange( ctrlPoints, number ){
       ctrlPoints[ prevCtrlPtInd ][1];
     var ctrlPtsDist = ctrlPtDists[ prevCtrlPtInd + 1 ] -
       ctrlPtDists[ prevCtrlPtInd ];
+    var distRatio = remainingDist / ctrlPtsDist;
 
     currPoint = [
-      currPoint[0] + ( ctrlPtsDeltaX / ctrlPtsDist ) * remainingDist,
-      currPoint[1] + ( ctrlPtsDeltaY / ctrlPtsDist ) * remainingDist
+      currPoint[ 0 ] + ctrlPtsDeltaX * distRatio,
+      currPoint[ 1 ] + ctrlPtsDeltaY * distRatio
     ];
-    interpPoints.push( currPoint );
+
+    var offsetRatio = offsetDist / ctrlPtsDist;
+    interpPoints.push([
+      currPoint[ 0 ] - ctrlPtsDeltaY * offsetRatio,
+      currPoint[ 1 ] + ctrlPtsDeltaX * offsetRatio
+    ]);
 
     currDist = nextDist;
     nextDist += step;
