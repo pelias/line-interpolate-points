@@ -55,15 +55,14 @@ function interpolateLineRange( ctrlPoints, number, offsetDist ){
   var ctrlPtDists = [ 0 ];
   var ptOffsetRatios = [];
   for( var pt = 1; pt < ctrlPoints.length; pt++ ){
-    var currDist = distance( ctrlPoints[ pt ], ctrlPoints[ pt - 1 ] );
-    totalDist += currDist;
-    ptOffsetRatios.push( offsetDist / currDist );
+    var dist = distance( ctrlPoints[ pt ], ctrlPoints[ pt - 1 ] );
+    totalDist += dist;
+    ptOffsetRatios.push( offsetDist / dist );
     ctrlPtDists.push( totalDist );
   }
 
   // Variables used to control interpolation.
   var step = totalDist / (number - 1);
-  var interpPoints = [ctrlPoints[ 0 ]];
   var interpPoints = [ offsetPoint(
     ctrlPoints[ 0 ],
     ctrlPoints[ 1 ][ 0 ] - ctrlPoints[ 0 ][ 0 ],
@@ -120,11 +119,3 @@ function interpolateLineRange( ctrlPoints, number, offsetDist ){
 }
 
 module.exports = interpolateLineRange;
-var actual = interpolateLineRange([
-  [16, -10],
-  [12, 5],
-  [ 8, 20],
-  [ 4, 10 ],
-  [ 4, 4 ]
-], 10, 0.5 );
-console.log( JSON.stringify( actual, undefined, 0  ) );
