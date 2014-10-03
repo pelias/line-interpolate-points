@@ -2,16 +2,17 @@
 
 # line interpolate points
 A Node module that interpolates the coordinates of any number of equidistant points along a line composed of one *or
-more* line segments. It's particularly useful for GIS applications, and is analogous to the PostGIS
-`ST_LineInterpolatePoint()` and Python Shapely's `shapely.geometry.LineString.interpolate()`. Here's an example of a
-number of points interpolated over a multi-segment line:
+more* line segments, at an optional offset. It's particularly useful for GIS applications, and is analogous to the
+PostGIS `ST_LineInterpolatePoint()` and Python Shapely's `shapely.geometry.LineString.interpolate()`. Here's an example
+of points interpolated over different multi-segment lines (the second group has been offset):
 
 ![A range of points interpolated along a multi-segment line.](https://raw.githubusercontent.com/pelias/line-interpolate-points/master/line_points_interpolation.png)
 
 ## the api
-The module exports a single function, `interpolateLineRange( ctrlPoints, number )`; `ctrlPoints` is an array of 2D
-point arrays, like `[ [ 5, 10 ], [ 7, 10 ], [ 14, 13 ] ]`, while `number` is the number of points to
-interpolate (the endpoints included).
+The module exports a single function, `interpolateLineRange( ctrlPoints, number, offsetDist )`.
+  - `ctrlPoints` is an array of 2D point arrays, like `[ [ 5, 10 ], [ 7, 10 ], [ 14, 13 ] ]`
+  - `number` is the number of points to interpolate (the endpoints included)
+  - `offsetDist` is an optional distance to move each interpolated point from its container line segment.
 
 ```javascript
 > var interpolateLineRange = require( 'line-interpolate-points' )
@@ -22,6 +23,13 @@ interpolate (the endpoints included).
   [ 3.3333333333333335, 10 ],
   [ 3.666666666666667, 10 ],
   [ 4, 10 ] ]
+> interpolateLineRange( [ [ 4, 4 ], [ 4, 10 ], [ 7, 17 ] ], 6, 1 )
+[ [ 3, 4 ],
+  [ 3, 6.723154621172782 ],
+  [ 3, 9.446309242345563 ],
+  [ 3.9354486533919397, 12.387971226535829 ],
+  [ 5.008151811686941, 14.890945262557498 ],
+  [ 6.080854969981942, 17.393919298579167 ] ]
 ```
 
 ## Install Dev Dependencies
