@@ -47,6 +47,43 @@ module.exports.tests.interpolation = function ( test, common ){
     }
     t.end();
   });
+  test( 'offsets point coordinates correctly', function ( t ){
+    var actual = interpolateLineRange([
+      [ 0, 0 ],
+      [ 4, 10 ],
+      [ 8, 20],
+      [12, 5],
+      [16, -10]
+    ], 10, 20 );
+    var expected = [
+      [-18.56953381770519,7.427813527082075],
+      [ -16.39941520875335, 12.853110049461673 ],
+      [ -14.229296599801511, 18.27840657184127 ],
+      [ -12.059177990849673, 23.703703094220867 ],
+      [ 27.7967969300016, 23.38288499379412 ],
+      [ 29.302377302406267, 17.736958597276626 ],
+      [ 30.807957674810933, 12.091032200759127 ],
+      [ 32.31353804721559, 6.445105804241633 ],
+      [ 33.81911841962025, 0.7991794077241394 ],
+      [35.324698792024925,-4.846746988793353]
+    ];
+
+    t.true(
+      actual.length === expected.length,
+      'Expected number of points interpolated.'
+    );
+    for( var pt = 0; pt < actual.length; pt++ ){
+      t.true(
+        Math.floor( actual[ pt ][ 0 ] ) == Math.floor( expected[ pt ][ 0 ] ),
+        util.format( 'x-coordinate %d matches.', pt )
+      );
+      t.true(
+        Math.floor( actual[ pt ][ 1 ] ) == Math.floor( expected[ pt ][1 ] ),
+        util.format( 'y-coordinate %d matches.', pt )
+      );
+    }
+    t.end();
+  });
 };
 
 module.exports.all = function ( tape, common ) {
