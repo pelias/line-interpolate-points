@@ -10,19 +10,18 @@ number of points interpolated over a multi-segment line:
 
 ## the api
 The module exports a single function, `interpolateLineRange( ctrlPoints, number )`; `ctrlPoints` is an array of 2D
-point objects, like `[ { x: 5, y: 10 }, { x: 7, y: 10 }, { x: 14, y: 13 } ]`, while `number` is the number of points to
+point arrays, like `[ [ 5, 10 ], [ 7, 10 ], [ 14, 13 ] ]`, while `number` is the number of points to
 interpolate (the endpoints included).
 
 ```javascript
 > var interpolateLineRange = require( 'line-interpolate-points' )
-> interpolateLineRange( [ { x: 3, y: 10 }, { x: 4, y: 10 } ], 2 )
-[ { x: 3, y: 10 },
-  { x: 4, y: 10 } ]
-> interpolateLineRange( [ { x: 3, y: 10 }, { x: 4, y: 10 } ], 4 )
-[ { x: 3, y: 10 },
-  { x: 3.3333333333333335, y: 10 },
-  { x: 3.666666666666667, y: 10 },
-  { x: 4, y: 10 } ]
+> interpolateLineRange( [ [ 3, 10 ], [ 4, 10 ] ], 2 )
+[ [ 3, 10 ], [ 4, 10 ] ]
+> interpolateLineRange( [ [ 3, 10 ], [ 4, 10 ] ], 4 )
+[ [ 3, 10 ],
+  [ 3.3333333333333335, 10 ],
+  [ 3.666666666666667, 10 ],
+  [ 4, 10 ] ]
 ```
 
 ## Install Dev Dependencies
@@ -33,8 +32,8 @@ $ npm install
 
 ## Contributing
 
-Please fork and pull request against upstream master on a feature branch. Pretty please: provide unit tests and script
-fixtures in the `test` directory.
+Please fork and pull request against upstream master on a feature branch. Please provide unit tests and script fixtures
+in the `test` directory.
 
 ### Running Unit Tests
 

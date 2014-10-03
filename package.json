@@ -1,6 +1,6 @@
 {
   "name": "line-interpolate-points",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "Exposes a function to interpolate any number of points along a multi-segment line (LineString).",
   "main": "index.js",
   "scripts": {
