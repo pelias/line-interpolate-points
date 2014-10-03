@@ -21,6 +21,22 @@ function distance( pt1, pt2 ){
 }
 
 /**
+ * @param {Point} point The Point object to offset.
+ * @param {number} dx The delta-x of the line segment from which `point` will
+ *    be offset.
+ * @param {number} dy The delta-y of the line segment from which `point` will
+ *    be offset.
+ * @param {number} distRatio The quotient of the distance to offset `point`
+ *    by and the distance of the line segment from which it is being offset.
+ */
+function offsetPoint( point, dx, dy, distRatio ){
+  return [
+    point[ 0 ] - dy * distRatio,
+    point[ 1 ] + dx * distRatio
+  ];
+}
+
+/**
  * @param {array of Point} ctrlPoints The vertices of the (multi-segment) line
  *      to be interpolate along.
  * @param {int} number The number of points to interpolate along the line; this
@@ -44,11 +60,16 @@ function interpolateLineRange( ctrlPoints, number, offsetDist ){
     ptOffsetRatios.push( offsetDist / currDist );
     ctrlPtDists.push( totalDist );
   }
-  console.log( ptOffsetRatios.length );
 
   // Variables used to control interpolation.
   var step = totalDist / (number - 1);
-  var interpPoints = [ ctrlPoints[ 0 ] ];
+  var interpPoints = [ctrlPoints[ 0 ]];
+  var interpPoints = [ offsetPoint(
+    ctrlPoints[ 0 ],
+    ctrlPoints[ 1 ][ 0 ] - ctrlPoints[ 0 ][ 0 ],
+    ctrlPoints[ 1 ][ 1 ] - ctrlPoints[ 0 ][ 1 ],
+    ptOffsetRatios[ 0 ]
+  )];
   var prevCtrlPtInd = 0;
   var currDist = 0;
   var currPoint = ctrlPoints[ 0 ];
@@ -79,17 +100,31 @@ function interpolateLineRange( ctrlPoints, number, offsetDist ){
 
     // Offset currPoint according to `offsetDist`.
     var offsetRatio = offsetDist / ctrlPtsDist;
-    interpPoints.push([
-      currPoint[ 0 ] - ctrlPtsDeltaY * ptOffsetRatios[ prevCtrlPtInd ],
-      currPoint[ 1 ] + ctrlPtsDeltaX * ptOffsetRatios[ prevCtrlPtInd ]
-    ]);
+    interpPoints.push( offsetPoint(
+      currPoint, ctrlPtsDeltaX, ctrlPtsDeltaY, ptOffsetRatios[ prevCtrlPtInd ])
+    );
 
     currDist = nextDist;
     nextDist += step;
   }
 
-  interpPoints.push( ctrlPoints[ ctrlPoints.length - 1 ] );
+  interpPoints.push( offsetPoint(
+    ctrlPoints[ ctrlPoints.length - 1 ],
+    ctrlPoints[ ctrlPoints.length - 1 ][ 0 ] -
+      ctrlPoints[ ctrlPoints.length - 2 ][ 0 ],
+    ctrlPoints[ ctrlPoints.length - 1 ][ 1 ] -
+      ctrlPoints[ ctrlPoints.length - 2 ][ 1 ],
+    ptOffsetRatios[ ptOffsetRatios.length - 1 ]
+  ));
   return interpPoints;
 }
 
 module.exports = interpolateLineRange;
+var actual = interpolateLineRange([
+  [16, -10],
+  [12, 5],
+  [ 8, 20],
+  [ 4, 10 ],
+  [ 4, 4 ]
+], 10, 0.5 );
+console.log( JSON.stringify( actual, undefined, 0  ) );
