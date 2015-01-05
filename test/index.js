@@ -47,7 +47,8 @@ module.exports.tests.interpolation = function ( test, common ){
     }
     t.end();
   });
-  test( 'offsets point coordinates correctly', function ( t ){
+
+  test( 'offsets point coordinates', function ( t ){
     var actual = interpolateLineRange([
       [ 0, 0 ],
       [ 4, 10 ],
@@ -82,6 +83,15 @@ module.exports.tests.interpolation = function ( test, common ){
         util.format( 'y-coordinate %d matches.', pt )
       );
     }
+    t.end();
+  });
+
+  test( 'Enforces a minimum gap between points', function ( t ){
+    var ctrlPoints = [[ 0, 0 ], [2, 0], [ 2, 5 ], [4, 5]];
+    var actual = interpolateLineRange( ctrlPoints, 30, undefined, 3 );
+    var expected = [ [ 0, 0 ], [ 2, 1 ], [ 2, 4 ], [ 4, 5 ] ];
+    t.equal( actual.length, 4, 'Correct number of points.' );
+    t.deepEqual( actual, expected, 'Correct point coordinates.' );
     t.end();
   });
 };

@@ -44,8 +44,13 @@ function offsetPoint( point, dx, dy, distRatio ){
  *      smaller number is given, then the endpoints will still be returned).
  * @param {number} [offsetDist] An optional perpendicular distance to offset
  *      each point from the line-segment it would otherwise lie on.
+ * @param {int} [minGap] An optional minimum gap to maintain between subsequent
+ *      interpolated points; if the projected gap between subsequent points for
+ *      a set of `number` points is lower than this value, `number` will be
+ *      decreased to a suitable value.
  */
-function interpolateLineRange( ctrlPoints, number, offsetDist ){
+function interpolateLineRange( ctrlPoints, number, offsetDist, minGap ){
+  minGap = minGap || 0;
   offsetDist = offsetDist || 0;
 
   // Calculate path distance from each control point (vertex) to the beginning
@@ -59,6 +64,10 @@ function interpolateLineRange( ctrlPoints, number, offsetDist ){
     totalDist += dist;
     ptOffsetRatios.push( offsetDist / dist );
     ctrlPtDists.push( totalDist );
+  }
+
+  if( totalDist / (number - 1) < minGap ){
+    number = totalDist / minGap + 1;
   }
 
   // Variables used to control interpolation.
