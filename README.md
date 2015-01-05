@@ -13,6 +13,9 @@ The module exports a single function, `interpolateLineRange( ctrlPoints, number,
   - `ctrlPoints` is an array of 2D point arrays, like `[ [ 5, 10 ], [ 7, 10 ], [ 14, 13 ] ]`
   - `number` is the number of points to interpolate (the endpoints included)
   - `offsetDist` is an optional distance to move each interpolated point from its container line segment.
+  - `minGap` is an optional minimum distance to maintain between subsequent interpolated points (`offsetDist` is not
+    taken into account here, as spacing between points is measured *along* the LineString). May decrease `number` if
+    the gap between neighbors with that number of points would be lower than `minGap`.
 
 ```javascript
 > var interpolateLineRange = require( 'line-interpolate-points' )
