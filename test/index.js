@@ -37,11 +37,11 @@ module.exports.tests.interpolation = function ( test, common ){
     );
     for( var pt = 0; pt < actual.length; pt++ ){
       t.true(
-        Math.floor( actual[ pt ][ 0 ] ) == Math.floor( expected[ pt ][ 0 ] ),
+        Math.floor( actual[ pt ][ 0 ] ) === Math.floor( expected[ pt ][ 0 ] ),
         util.format( 'x-coordinate %d matches.', pt )
       );
       t.true(
-        Math.floor( actual[ pt ][ 1 ] ) == Math.floor( expected[ pt ][1 ] ),
+        Math.floor( actual[ pt ][ 1 ] ) === Math.floor( expected[ pt ][1 ] ),
         util.format( 'y-coordinate %d matches.', pt )
       );
     }
@@ -75,11 +75,11 @@ module.exports.tests.interpolation = function ( test, common ){
     );
     for( var pt = 0; pt < actual.length; pt++ ){
       t.true(
-        Math.floor( actual[ pt ][ 0 ] ) == Math.floor( expected[ pt ][ 0 ] ),
+        Math.floor( actual[ pt ][ 0 ] ) === Math.floor( expected[ pt ][ 0 ] ),
         util.format( 'x-coordinate %d matches.', pt )
       );
       t.true(
-        Math.floor( actual[ pt ][ 1 ] ) == Math.floor( expected[ pt ][1 ] ),
+        Math.floor( actual[ pt ][ 1 ] ) === Math.floor( expected[ pt ][1 ] ),
         util.format( 'y-coordinate %d matches.', pt )
       );
     }
