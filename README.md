@@ -41,6 +41,17 @@ The module exports a single function, `interpolateLineRange( ctrlPoints, number,
 $ npm install
 ```
 
+## Using in the Browser
+
+This module is compiled for use in the browser using `browserify`, you can find a minified version in the `./dist` directory.
+
+You can re-generate the browser versions using the following commands:
+
+```bash
+$ npm run build/dev
+$ npm run build/prod
+```
+
 ## Contributing
 
 Please fork and pull request against upstream master on a feature branch. Please provide unit tests and script fixtures
