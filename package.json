@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "node test/run.js | tap-spec",
-    "build/dev": "./node_modules/.bin/browserify -s interpolateLineRange index.js | ./node_modules/.bin/uglifyjs  > line-interpolate-points.min.js",
-    "build/prod": "./node_modules/.bin/browserify -s interpolateLineRange index.js > line-interpolate-points.js"
+    "build/dev": "./node_modules/.bin/browserify -s interpolateLineRange index.js | ./node_modules/.bin/uglifyjs  > dist/line-interpolate-points.min.js",
+    "build/prod": "./node_modules/.bin/browserify -s interpolateLineRange index.js > dist/line-interpolate-points.js"
   },
   "repository": {
     "type": "git",
