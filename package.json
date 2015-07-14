@@ -4,7 +4,9 @@
   "description": "Exposes a function to interpolate any number of points along a multi-segment line (LineString).",
   "main": "index.js",
   "scripts": {
-    "test": "node test/run.js | tap-spec"
+    "test": "node test/run.js | tap-spec",
+    "build/dev": "./node_modules/.bin/browserify -s interpolateLineRange index.js | ./node_modules/.bin/uglifyjs  > line-interpolate-points.min.js",
+    "build/prod": "./node_modules/.bin/browserify -s interpolateLineRange index.js > line-interpolate-points.js"
   },
   "repository": {
     "type": "git",
@@ -23,9 +25,11 @@
   },
   "homepage": "https://github.com/pelias/line-interpolate-points",
   "devDependencies": {
-    "tape": "^2.13.4",
-    "tap-spec": "^0.2.0",
+    "browserify": "^10.2.3",
+    "jshint": "2.5.11",
     "precommit-hook": "1.0.7",
-    "jshint": "2.5.11"
+    "tap-spec": "^0.2.0",
+    "tape": "^2.13.4",
+    "uglifyjs": "^2.4.10"
   }
 }
