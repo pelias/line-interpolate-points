@@ -1,6 +1,18 @@
 language: node_js
 node_js:
-  - "0.11"
-  - "0.10"
+  - 0.12
+  - 4
+  - 5
+  - 6
 notifications:
   flowdock: f0bbceadacc5c97e7f3a657941b5a5eb
+sudo: false
+cache:
+  directories:
+    - node_modules
+before_script:
+  - npm prune
+matrix:
+  fast_finish: true
+  allow_failures:
+    - node_js: 6
