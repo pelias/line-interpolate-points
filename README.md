@@ -1,6 +1,8 @@
 [![NPM](https://nodei.co/npm/line-interpolate-points.png?downloads=true&stars=true)](https://nodei.co/npm/line-interpolate-points/)
 
 # line interpolate points
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/pelias/line-interpolate-points.svg)](https://greenkeeper.io/)
 A Node module that interpolates the coordinates of any number of equidistant points along a line composed of one *or
 more* line segments, at an optional offset. It's particularly useful for GIS applications, and is analogous to the
 PostGIS `ST_LineInterpolatePoint()` and Python Shapely's `shapely.geometry.LineString.interpolate()`. Here's an example
