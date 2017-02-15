@@ -25,11 +25,11 @@
   },
   "homepage": "https://github.com/pelias/line-interpolate-points",
   "devDependencies": {
-    "browserify": "^10.2.3",
-    "jshint": "2.5.11",
-    "precommit-hook": "1.0.7",
-    "tap-spec": "^0.2.0",
-    "tape": "^2.13.4",
+    "browserify": "^14.0.0",
+    "jshint": "2.9.4",
+    "precommit-hook": "3.0.0",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.3",
     "uglifyjs": "^2.4.10"
   }
 }
