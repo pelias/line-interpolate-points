@@ -8,7 +8,7 @@
     "build/dev": "./node_modules/.bin/browserify -s interpolateLineRange index.js | ./node_modules/.bin/uglifyjs  > line-interpolate-points.min.js",
     "build/prod": "./node_modules/.bin/browserify -s interpolateLineRange index.js > line-interpolate-points.js",
     "check-dependencies": "node_modules/.bin/npm-check --production",
-    "travis": "npm run check-dependencies && undefined"
+    "travis": "npm run check-dependencies && npm test"
   },
   "repository": {
     "type": "git",
